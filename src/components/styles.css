@@ -1,0 +1,4 @@
+.selecionado {
+    border: 3px solid hsl(26,100%,55%);
+    opacity: 50%;
+}
