@@ -1,7 +1,18 @@
 import './styles.css'
 import { useEffect, useState } from "react"
+import imageProduct1 from '../images/image-product-1.jpg'
+import imageProduct2 from '../images/image-product-2.jpg'
+import imageProduct3 from '../images/image-product-3.jpg'
+import imageProduct4 from '../images/image-product-4.jpg'
+import iconMinus from '../images/icon-minus.svg'
+import iconPlus from '../images/icon-plus.svg'
+import iconCart from '../images/icon-cart.svg'
+import iconClose from '../images/icon-close.svg'
+import iconPrevious from '../images/icon-previous.svg'
+import iconNext from '../images/icon-next.svg'
+
 export const PgCompras = ({buscarValores}) => {
-    const [ imagemDestaque, setImagemDestaque ] = useState('http://localhost:5173/public/images/image-product-1.jpg')
+    const [ imagemDestaque, setImagemDestaque ] = useState(imageProduct1)
     const imagemSelecionada = (caminho) => {
         setImagemDestaque(caminho)
     }
@@ -9,7 +20,7 @@ export const PgCompras = ({buscarValores}) => {
     const [statusSeta, setStatusSeta] = useState(0)
    
     const passagemSeta = (id)=> {
-        const enderecos = ['http://localhost:5173/public/images/image-product-1.jpg','http://localhost:5173/public/images/image-product-2.jpg','http://localhost:5173/public/images/image-product-3.jpg','http://localhost:5173/public/images/image-product-4.jpg']
+        const enderecos = [imageProduct1, imageProduct2, imageProduct3, imageProduct4]
         if(id === 'previous' && statusSeta > 0){
             const result = statusSeta - 1
             setStatusSeta(result)
@@ -20,7 +31,7 @@ export const PgCompras = ({buscarValores}) => {
             setImagemDestaque(enderecos[result])
         } else {
             setStatusSeta(0)
-            setImagemDestaque('http://localhost:5173/public/images/image-product-1.jpg')   
+            setImagemDestaque(imageProduct1)
         }
         
         
@@ -60,10 +71,10 @@ export const PgCompras = ({buscarValores}) => {
             <div className="flex flex-col gap-3">
                 { imagemDestaque !== '' ? (<img onClick={statusCarrossel} src={imagemDestaque} width={400} className="cursor-pointer rounded-2xl" alt="produto-1" />) : ""}
                 <div className="flex gap-2 cursor-pointer">
-                    <img onClick={(e)=>{imagemSelecionada(e.target.src)}} src="../../public/images/image-product-1.jpg" width={90} alt="produto-1" className={`rounded-2xl hover:opacity-50 transition-all ${imagemDestaque === 'http://localhost:5173/public/images/image-product-1.jpg' ? 'selecionado' : ''}`} />
-                    <img onClick={(e)=>{imagemSelecionada(e.target.src)}} src="../../public/images/image-product-2.jpg" width={90} alt="produto-2" className={`rounded-2xl hover:opacity-50 transition-all ${imagemDestaque === 'http://localhost:5173/public/images/image-product-2.jpg' ? 'selecionado' : ''} `} />
-                    <img onClick={(e)=>{imagemSelecionada(e.target.src)}} src="../../public/images/image-product-3.jpg" width={90} alt="produto-3" className={`rounded-2xl hover:opacity-50 transition-all ${imagemDestaque === 'http://localhost:5173/public/images/image-product-3.jpg' ? 'selecionado' : ''} `} />
-                    <img onClick={(e)=>{imagemSelecionada(e.target.src)}} src="../../public/images/image-product-4.jpg" width={90} alt="produto-4" className={`rounded-2xl hover:opacity-50 transition-all ${imagemDestaque === 'http://localhost:5173/public/images/image-product-4.jpg' ? 'selecionado' : ''} `} />
+                    <img onClick={() => imagemSelecionada(imageProduct1)} src={imageProduct1} width={90} alt="produto-1" className={`rounded-2xl hover:opacity-50 transition-all ${imagemDestaque === imageProduct1 ? 'selecionado' : ''}`} />
+                    <img onClick={() => imagemSelecionada(imageProduct2)} src={imageProduct2} width={90} alt="produto-2" className={`rounded-2xl hover:opacity-50 transition-all ${imagemDestaque === imageProduct2 ? 'selecionado' : ''} `} />
+                    <img onClick={() => imagemSelecionada(imageProduct3)} src={imageProduct3} width={90} alt="produto-3" className={`rounded-2xl hover:opacity-50 transition-all ${imagemDestaque === imageProduct3 ? 'selecionado' : ''} `} />
+                    <img onClick={() => imagemSelecionada(imageProduct4)} src={imageProduct4} width={90} alt="produto-4" className={`rounded-2xl hover:opacity-50 transition-all ${imagemDestaque === imageProduct4 ? 'selecionado' : ''} `} />
                 </div>
             </div>
             <div className="flex flex-col gap-2 w-100">
@@ -77,28 +88,28 @@ export const PgCompras = ({buscarValores}) => {
                 <p className="line-through">$250.00</p>
                 <div className="flex gap-2">
                     <div className="flex">
-                        <button onClick={(e)=>{alterarContador(e.target.id)}} id="-" className="bg-[hsl(223,64%,98%)] hover:bg-[hsl(231,45%,94%)] cursor-pointer rounded-l-2xl px-4 py-2"><img src="/public/images/icon-minus.svg" alt="menos" /></button>
+                        <button onClick={(e)=>{alterarContador(e.target.id)}} id="-" className="bg-[hsl(223,64%,98%)] hover:bg-[hsl(231,45%,94%)] cursor-pointer rounded-l-2xl px-4 py-2"><img src={iconMinus} alt="menos" /></button>
                         <p className="px-4 py-2 bg-[hsl(223,64%,98%)]">{count}</p>
-                        <button onClick={(e)=>{alterarContador(e.target.id)}} id="+" className="bg-[hsl(223,64%,98%)] hover:bg-[hsl(231,45%,94%)] cursor-pointer rounded-r-2xl px-4 py-2"><img src="/public/images/icon-plus.svg" alt="menos" /></button>
+                        <button onClick={(e)=>{alterarContador(e.target.id)}} id="+" className="bg-[hsl(223,64%,98%)] hover:bg-[hsl(231,45%,94%)] cursor-pointer rounded-r-2xl px-4 py-2"><img src={iconPlus} alt="mais" /></button>
                     </div>
-                    <button onClick={alterarPrecoProduto} className="flex items-center justify-center cursor-pointer px-15 rounded-[9px] gap-2 bg-[hsl(26,100%,55%)]"><img width={20} src="/public/images/icon-cart.svg" alt="" /> Add to cart</button>
+                    <button onClick={alterarPrecoProduto} className="flex items-center justify-center cursor-pointer px-15 rounded-[9px] gap-2 bg-[hsl(26,100%,55%)]"><img width={20} src={iconCart} alt="" /> Add to cart</button>
                 </div>
             </div>
             <div className={` ${carrossel === 'aberto' ? '' : 'hidden' } flex flex-col justify-center gap-2 items-center absolute w-full h-[200%] bg-[rgba(0,0,0,0.7)]`} >
                 <div className="flex w-100">
-                    <img onClick={statusCarrossel} className="pl-96 cursor-pointer" src="/public/images/icon-close.svg" alt="" />
+                    <img onClick={statusCarrossel} className="pl-96 cursor-pointer" src={iconClose} alt="Fechar modal" />
                 </div>
                 <div className="flex flex-col gap-3">
                 { imagemDestaque !== '' ? (<div className="relative flex justify-center items-center ">
-                    <img onClick={(e)=>{passagemSeta(e.target.id)}} id='previous' className="absolute cursor-pointer bg-amber-50 right-95 p-3 rounded-[50%] active:bg-[hsl(26,100%,72%)] transition-all" src="/public/images/icon-previous.svg" alt="previous" />
+                    <img onClick={(e)=>{passagemSeta(e.target.id)}} id='previous' className="absolute cursor-pointer bg-amber-50 right-95 p-3 rounded-[50%] active:bg-[hsl(26,100%,72%)] transition-all" src={iconPrevious} alt="previous" />
                     <img src={imagemDestaque} width={400} className={`rounded-2xl`} alt="produto" />
-                    <img onClick={(e)=>{passagemSeta(e.target.id)}} id='next' className="absolute cursor-pointer bg-amber-50 left-95 p-3 rounded-[50%] active:bg-[hsl(26,100%,72%)] transition-all" src="/public/images/icon-next.svg" alt="next" />
+                    <img onClick={(e)=>{passagemSeta(e.target.id)}} id='next' className="absolute cursor-pointer bg-amber-50 left-95 p-3 rounded-[50%] active:bg-[hsl(26,100%,72%)] transition-all" src={iconNext} alt="next" />
                 </div> ) : ""}
                 <div className="flex gap-2 cursor-pointer">
-                    <img onClick={(e)=>{imagemSelecionada(e.target.src)}} src="/public/images/image-product-1.jpg" width={90} alt="produto-1" className={`rounded-2xl hover:opacity-50 transition-all ${imagemDestaque === 'http://localhost:5173/public/images/image-product-1.jpg' ? 'selecionado' : ''} `} />
-                    <img onClick={(e)=>{imagemSelecionada(e.target.src)}} src="/public/images/image-product-2.jpg" width={90} alt="produto-2" className={`rounded-2xl hover:opacity-50 transition-all ${imagemDestaque === 'http://localhost:5173/public/images/image-product-2.jpg' ? 'selecionado' : ''} `} />
-                    <img onClick={(e)=>{imagemSelecionada(e.target.src)}} src="/public/images/image-product-3.jpg" width={90} alt="produto-3" className={`rounded-2xl hover:opacity-50 transition-all ${imagemDestaque === 'http://localhost:5173/public/images/image-product-3.jpg' ? 'selecionado' : ''} `} />
-                    <img onClick={(e)=>{imagemSelecionada(e.target.src)}} src="/public/images/image-product-4.jpg" width={90} alt="produto-4" className={`rounded-2xl hover:opacity-50 transition-all ${imagemDestaque === 'http://localhost:5173/public/images/image-product-4.jpg' ? 'selecionado' : ''} `} />
+                    <img onClick={() => imagemSelecionada(imageProduct1)} src={imageProduct1} width={90} alt="produto-1" className={`rounded-2xl hover:opacity-50 transition-all ${imagemDestaque === imageProduct1 ? 'selecionado' : ''} `} />
+                    <img onClick={() => imagemSelecionada(imageProduct2)} src={imageProduct2} width={90} alt="produto-2" className={`rounded-2xl hover:opacity-50 transition-all ${imagemDestaque === imageProduct2 ? 'selecionado' : ''} `} />
+                    <img onClick={() => imagemSelecionada(imageProduct3)} src={imageProduct3} width={90} alt="produto-3" className={`rounded-2xl hover:opacity-50 transition-all ${imagemDestaque === imageProduct3 ? 'selecionado' : ''} `} />
+                    <img onClick={() => imagemSelecionada(imageProduct4)} src={imageProduct4} width={90} alt="produto-4" className={`rounded-2xl hover:opacity-50 transition-all ${imagemDestaque === imageProduct4 ? 'selecionado' : ''} `} />
                 </div>
             </div>
                 
