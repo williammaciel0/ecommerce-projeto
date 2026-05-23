@@ -10,7 +10,7 @@ export const Header = ({data}) => {
 
     return (
             <section className="py-5 flex justify-evenly items-center border-b border-[hsl(206,8%,83%)]">
-                <img src="/public/images/logo.svg" alt="Logo principal" />
+                <img src="../../public/images/logo.svg" alt="Logo principal" />
                 <ul className="flex gap-10">
                     <a className={`cursor-pointer relative text-[hsl(219,9%,45%)] hover:text-[hsl(220,13%,13%)] transition-all `}>Collections <div className="absolute h-14 top-1 w-20 border-amber-50 border-b-4 hover:border-[hsl(26,100%,55%)] transition-all"></div></a>
                     <a className={`cursor-pointer relative text-[hsl(219,9%,45%)] hover:text-[hsl(220,13%,13%)] transition-all`}>Men <div className="absolute h-14 top-1 w-10 border-amber-50 border-b-4 hover:border-[hsl(26,100%,55%)] transition-all"></div></a>
