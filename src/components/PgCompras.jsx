@@ -67,10 +67,20 @@ export const PgCompras = ({buscarValores}) => {
     }
     
     return (
-        <section className={`relative flex my-15 justify-evenly items-center`}>
+        <section className={` relative flex sm:flex-row flex-col sm:my-15 justify-evenly items-center`}>
             <div className="flex flex-col gap-3">
-                { imagemDestaque !== '' ? (<img onClick={statusCarrossel} src={imagemDestaque} width={400} className="cursor-pointer rounded-2xl" alt="produto-1" />) : ""}
-                <div className="flex gap-2 cursor-pointer">
+                { imagemDestaque !== '' ? (
+                    <picture className='relative'>
+                        <div className='absolute sm:hidden w-[100%] h=[100%]'>
+                            <img onClick={(e)=>{passagemSeta(e.target.id)}} id='previous' className="absolute cursor-pointer bg-amber-50 top-45 right-90 p-3 rounded-[50%] active:bg-[hsl(26,100%,72%)] transition-all" src={iconPrevious} alt="previous" />
+                            <img onClick={(e)=>{passagemSeta(e.target.id)}} id='next' className="absolute cursor-pointer bg-amber-50 top-45 left-90 p-3 rounded-[50%] active:bg-[hsl(26,100%,72%)] transition-all" src={iconNext} alt="next" />
+                        </div>
+                        <source media='(min-width: 640px)' srcSet={imagemDestaque }/>
+                        <img onClick={statusCarrossel} src={imagemDestaque} width={400} className="cursor-pointer sm:rounded-2xl" alt="produto-1" />
+                    </picture>
+                    
+                ) : ""}
+                <div className=" hidden sm:flex gap-2 cursor-pointer">
                     <img onClick={() => imagemSelecionada(imageProduct1)} src={imageProduct1} width={90} alt="produto-1" className={`rounded-2xl hover:opacity-50 transition-all ${imagemDestaque === imageProduct1 ? 'selecionado' : ''}`} />
                     <img onClick={() => imagemSelecionada(imageProduct2)} src={imageProduct2} width={90} alt="produto-2" className={`rounded-2xl hover:opacity-50 transition-all ${imagemDestaque === imageProduct2 ? 'selecionado' : ''} `} />
                     <img onClick={() => imagemSelecionada(imageProduct3)} src={imageProduct3} width={90} alt="produto-3" className={`rounded-2xl hover:opacity-50 transition-all ${imagemDestaque === imageProduct3 ? 'selecionado' : ''} `} />
